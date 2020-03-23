@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AuthorizationServer.Models.CustomerModel>
+
+@{
+    ViewBag.Title = "Customer overview";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("Add new customer", "CustomerAddOrEdit")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayName("Customer Name")
+        </th>
+        <th>
+            @Html.DisplayName("Address")
+        </th>
+        <th>
+            @Html.DisplayName("Contact Person")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Content/images/company.png" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPerson)
+            </td>
+            <td>
+                @Html.ActionLink("Edit Customer", "CustomerAddOrEdit", new { id = item.CustomerID }) <br />
+                @Html.ActionLink("See Environments", "CustomerViewEnvironment", new { id = item.CustomerID }) <br />
+                @Html.ActionLink("Delete Customer", "Delete", new { id = item.CustomerID })
+            </td>
+        </tr>
+    }
+
+</table>

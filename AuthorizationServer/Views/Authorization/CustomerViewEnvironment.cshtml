@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AuthorizationServer.Models.CustomerModel>
+
+@{
+    ViewBag.Title = "Environment Overview";
+}
+
+<h2>Environments</h2>
+
+<p>
+    @Html.ActionLink("Add new environment", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Environment Name")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Content/images/company.png" />
+                @Html.DisplayFor(modelItem => item.EnvironmentName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit Environment", "EnvironmentAddOrEdit", new { id=item.EnvironmentID })<br />
+                @Html.ActionLink("Apps", "EnvironmentViewApp", new { id=item.EnvironmentID })<br />
+                @Html.ActionLink("Delete Environment", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
+</div>
