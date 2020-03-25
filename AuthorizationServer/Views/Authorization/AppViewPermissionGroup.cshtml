@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AuthorizationServer.Models.AppModel>
+
+@{
+    ViewBag.Title = "PermissionGroups";
+}
+
+    <h2>
+        PermissionGroups
+    </h2>
+
+
+    @Html.ActionLink("Create New", "Create")<br />
+    
+
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PermissionGroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        <img src="~/Content/images/permissiongroup-icon.png"
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PermissionGroupName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit PermissionGroup", "Edit", new { /* id=item.PrimaryKey */ })<br />
+        @Html.ActionLink("View Roles", "Details", new { /* id=item.PrimaryKey */ })<br />
+        @Html.ActionLink("Delete PermissionGroup", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+}
+
+</table>

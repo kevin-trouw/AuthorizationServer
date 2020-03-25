@@ -95,6 +95,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\app-icon.png" />
+    <Content Include="Content\images\company.png" />
+    <Content Include="Content\images\permissiongroup-icon.png" />
+    <Content Include="Content\images\role-icon.png" />
+    <Content Include="Content\images\web-api-permissions-50cdd62b44aecc8c9730770cc1d29ffd.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -145,6 +150,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Authorization\AppAddOrEdit.cshtml" />
+    <Content Include="Views\Authorization\AppViewPermissionGroup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

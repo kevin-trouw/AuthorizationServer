@@ -27,7 +27,7 @@
             <td>
                 @Html.ActionLink("Edit Environment", "EnvironmentAddOrEdit", new { id=item.EnvironmentID })<br />
                 @Html.ActionLink("Apps", "EnvironmentViewApp", new { id=item.EnvironmentID })<br />
-                @Html.ActionLink("Delete Environment", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete Environment", "Delete", new { id=item.EnvironmentID })
             </td>
         </tr>
     }
