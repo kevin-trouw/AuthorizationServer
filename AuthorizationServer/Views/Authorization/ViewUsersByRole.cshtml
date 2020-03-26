@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AuthorizationServer.Models.UserModel>
+
+@{
+    ViewBag.Title = "User By Role";
+}
+
+<h2>
+    User By Role
+</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("User Details", "ViewUser", new { id=item.UserID })<br />
+                @Html.ActionLink("Delete User from Role", "Delete", new { id=item.UserID })
+            </td>
+        </tr>
+    }
+
+</table>

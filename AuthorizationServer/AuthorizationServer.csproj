@@ -151,6 +151,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Authorization\AppAddOrEdit.cshtml" />
     <Content Include="Views\Authorization\AppViewPermissionGroup.cshtml" />
+    <Content Include="Views\Authorization\ViewPermissionGroupRole.cshtml" />
+    <Content Include="Views\Authorization\ViewUsersByRole.cshtml" />
+    <Content Include="Views\Authorization\ViewUser.cshtml" />
+    <Content Include="Views\Authorization\PermissionGroupAddOrEdit.cshtml" />
+    <Content Include="Views\Authorization\ViewPermissionsByRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

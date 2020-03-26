@@ -96,7 +96,7 @@ namespace AuthorizationServer.Controllers
 
         // ADD: Environment
         [HttpPost]
-        public ActionResult EnvironmentAddOrEdit(EnvironmentModel environmentModel, int customerID)
+        public ActionResult EnvironmentAddOrEdit(EnvironmentModel environmentModel)
         {
             DynamicParameters param = new DynamicParameters();
             param.Add("@EnvironmentID", environmentModel.EnvironmentID);
@@ -156,7 +156,8 @@ namespace AuthorizationServer.Controllers
             DynamicParameters param = new DynamicParameters();
             param.Add("@AppID", appModel.AppID);
             param.Add("@AppName", appModel.AppName);
-            param.Add("@EnvironmentID", appModel.EnvironmentID);
+            param.Add("@Description", appModel.Description);
+            
 
             DapperORM.ExecuteWithoutReturn("AppAddOrEdit", param);
 
@@ -262,17 +263,17 @@ namespace AuthorizationServer.Controllers
 
         // ADD: Role
         [HttpPost]
-        public ActionResult PermissionGroupAddOrEdit(RoleModel roleModel)
+        public ActionResult PermissionGroupAddOrEdit(PermissionGroupModel permissionGroupModel)
         {
             DynamicParameters param = new DynamicParameters();
-            param.Add("@PermissionGroupID", roleModel.RoleID);
-            param.Add("@PermissionGroupName", roleModel.RoleName);
+            param.Add("@PermissionGroupID", permissionGroupModel.PermissionGroupID);
+            param.Add("@PermissionGroupName", permissionGroupModel.PermissionGroupName);
 
             DapperORM.ExecuteWithoutReturn("PermissionGroupAddOrEdit", param);
 
             // ClientID (KlantID)
 
-            return Redirect("/Authorization/CustomerViewEnvironment/");
+            return Redirect("/Authorization/CustomerViewEnvironment/1");
         }
 
         // DELETE: App
@@ -285,6 +286,59 @@ namespace AuthorizationServer.Controllers
 
             return Redirect(Request.UrlReferrer.ToString());
         }
+
+        // ---------- GET: PermissionGroup_Role of PermissionGroup ----------
+        public ActionResult ViewPermissionGroupRole(int id = 0)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@PermissionGroupID", id);
+
+            return View(DapperORM.ReturnList<PermissionGroup_RoleModel>("PROC_PermissionGroup_Role", param));
+        }
+
+        // ---------- Users ----------
+        public ActionResult ViewUsersByRole(int id = 0)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@RoleID", id);
+
+            return View(DapperORM.ReturnList<UserModel>("UsersByRole", param));
+        }
+
+        public ActionResult ViewUserDetails(int id = 0)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@UserID", id);
+
+            return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param));
+        }
+
+        [HttpGet]
+        public ActionResult ViewUser(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+
+            else
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@UserID", id);
+
+                return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param).FirstOrDefault<UserModel>());
+            }
+        }
+
+        // ---------- PERMISSIONS ----------
+        public ActionResult ViewPermissionsByRole(int id = 0)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@RoleID", id);
+
+            return View(DapperORM.ReturnList<PermissionModel>("PermissionsByRole", param));
+        }
+
     }
 }
 

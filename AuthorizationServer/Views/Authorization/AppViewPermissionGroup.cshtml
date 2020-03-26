@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        <img src="~/Content/images/permissiongroup-icon.png"
+        <img src="~/Content/images/permissiongroup-icon.png" />
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.PermissionGroupName)
@@ -39,8 +39,8 @@
         @Html.DisplayFor(modelItem => item.AppName)
     </td>
     <td>
-        @Html.ActionLink("Edit PermissionGroup", "Edit", new { /* id=item.PrimaryKey */ })<br />
-        @Html.ActionLink("View Roles", "Details", new { /* id=item.PrimaryKey */ })<br />
+        @Html.ActionLink("Edit PermissionGroup", "PermissionGroupAddOrEdit", new { id=item.PermissionGroupID })<br />
+        @Html.ActionLink("View PermissionGroup Details", "ViewPermissionGroupRole", new { id=item.PermissionGroupID })<br />
         @Html.ActionLink("Delete PermissionGroup", "Delete", new { /* id=item.PrimaryKey */ })
     </td>
 </tr>

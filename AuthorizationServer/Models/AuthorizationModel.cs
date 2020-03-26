@@ -52,4 +52,27 @@ namespace AuthorizationServer.Models
         public int AppID { get; set; }
         public string AppName { get; set; }
     }
+
+    public class PermissionGroup_RoleModel
+    {
+        public int PermissionGroupID { get; set; }
+        public string PermissionGroupName { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+    }
+
+    public class UserModel
+    {
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+    }
+
+    public class PermissionModel
+    {
+        public int PermissionID { get; set; }
+        public string PermissionName { get; set; }
+        public int RoleID { get; set; }
+    }
 }
