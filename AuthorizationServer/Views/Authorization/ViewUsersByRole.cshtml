@@ -9,7 +9,7 @@
 </h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new user", "UserAddOrEdit")
 </p>
 <table class="table">
     <tr>
@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.RoleName)
             </td>
             <td>
-                @Html.ActionLink("User Details", "ViewUser", new { id=item.UserID })<br />
+                @Html.ActionLink("User Details", "ViewUser", new { id=item.UserID }, new { id=item.RoleID })<br />
                 @Html.ActionLink("Delete User from Role", "Delete", new { id=item.UserID })
             </td>
         </tr>

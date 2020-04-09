@@ -7,8 +7,12 @@
 <h2>Environments</h2>
 
 <p>
-    @Html.ActionLink("Add new environment", "Create")
+        @Html.ActionLink("Add new environment", "EnvironmentAddOrEdit")
 </p>
+    
+
+
+
 <table class="table">
     <tr>
         <th>
@@ -25,9 +29,9 @@
                 @Html.DisplayFor(modelItem => item.EnvironmentName)
             </td>
             <td>
-                @Html.ActionLink("Edit Environment", "EnvironmentAddOrEdit", new { id=item.EnvironmentID })<br />
-                @Html.ActionLink("Apps", "EnvironmentViewApp", new { id=item.EnvironmentID })<br />
-                @Html.ActionLink("Delete Environment", "Delete", new { id=item.EnvironmentID })
+                @Html.ActionLink("Edit Environment", "EnvironmentAddOrEdit", new { id = item.EnvironmentID })<br />
+                @Html.ActionLink("Apps", "EnvironmentViewApp", new { id = item.EnvironmentID })<br />
+                @Html.ActionLink("Delete Environment", "Delete", new { id = item.EnvironmentID })
             </td>
         </tr>
     }

@@ -29,11 +29,11 @@ namespace AuthorizationServer.Controllers
 
 
 
-        // EDIT: Customer
+        // EDIT: User
         [HttpGet]
-        public ActionResult CustomerAddOrEdit(int id = 0)
+        public ActionResult UserAddOrEdit(int UserID = 0, int RoleID = 0)
         {
-            if (id == 0)
+            if (UserID == 0)
             {
                 return View();
             }
@@ -41,21 +41,22 @@ namespace AuthorizationServer.Controllers
             else
             {
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@CustomerID", id);
+                param.Add("@UserID", UserID);
+                param.Add("@RoleID", RoleID);
 
-                return View(DapperORM.ReturnList<CustomerModel>("CustomerViewAllByID", param).FirstOrDefault<CustomerModel>());
+                return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param).FirstOrDefault<UserModel>());
             }
         }
 
-        // ADD: Customer
+        // ADD: User
         [HttpPost]
-        public ActionResult CustomerAddOrEdit(CustomerModel customerModel)
+        public ActionResult UserAddOrEdit(UserModel userModel)
         {
             DynamicParameters param = new DynamicParameters();
-            param.Add("@CustomerID", customerModel.CustomerID);
-            param.Add("@CustomerName", customerModel.CustomerName);
-            param.Add("@Address", customerModel.Address);
-            param.Add("@ContactPerson", customerModel.ContactPerson);
+            param.Add("@UserID", userModel.UserID);
+            param.Add("@UserName", userModel.UserName);
+            param.Add("@RoleID", userModel.RoleID);
+
             DapperORM.ExecuteWithoutReturn("CustomerAddOrEdit", param);
 
             return RedirectToAction("Index");
@@ -101,12 +102,14 @@ namespace AuthorizationServer.Controllers
             DynamicParameters param = new DynamicParameters();
             param.Add("@EnvironmentID", environmentModel.EnvironmentID);
             param.Add("@EnvironmentName", environmentModel.EnvironmentName);
+            param.Add("@CustomerID", environmentModel.CustomerID);
+            
 
             DapperORM.ExecuteWithoutReturn("EnvironmentAddOrEdit", param);
 
             // ClientID (KlantID)
 
-            return Redirect("/Authorization/CustomerViewEnvironment/4");
+            return Redirect("/Authorization/CustomerViewEnvironment/1");
         }
 
         // DELETE: Environment
@@ -157,7 +160,7 @@ namespace AuthorizationServer.Controllers
             param.Add("@AppID", appModel.AppID);
             param.Add("@AppName", appModel.AppName);
             param.Add("@Description", appModel.Description);
-            
+            param.Add("EnvironmentID", appModel.EnvironmentID);
 
             DapperORM.ExecuteWithoutReturn("AppAddOrEdit", param);
 
@@ -213,12 +216,11 @@ namespace AuthorizationServer.Controllers
             DynamicParameters param = new DynamicParameters();
             param.Add("@RoleID", roleModel.RoleID);
             param.Add("@RoleName", roleModel.RoleName);
-
+            param.Add("@AppID", roleModel.AppID);
+            
             DapperORM.ExecuteWithoutReturn("RoleAddOrEdit", param);
 
-            // ClientID (KlantID)
-
-            return Redirect("/Authorization/CustomerViewEnvironment/");
+            return RedirectToAction("Index");
         }
 
         // DELETE: App
@@ -337,6 +339,56 @@ namespace AuthorizationServer.Controllers
             param.Add("@RoleID", id);
 
             return View(DapperORM.ReturnList<PermissionModel>("PermissionsByRole", param));
+        }
+
+
+        // EDIT: Permission
+        [HttpGet]
+        public ActionResult PermissionAddOrEdit(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+
+            else
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@PermissionID", id);
+
+                return View(DapperORM.ReturnList<PermissionModel>("PermissionViewAllByID", param).FirstOrDefault<PermissionModel>());
+            }
+        }
+
+        // ADD: Permission
+        [HttpPost]
+        public ActionResult PermissionAddOrEdit(PermissionModel permissionModel)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@PermissionID", permissionModel.PermissionID);
+            param.Add("@PermissionName", permissionModel.PermissionName);
+            
+            DapperORM.ExecuteWithoutReturn("PermissionAddOrEdit", param);
+
+            return RedirectToAction("Index");
+        }
+
+        // Get details
+        [HttpGet]
+        public ActionResult ViewPermissionDetails(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+
+            else
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@PermissionID", id);
+
+                return View(DapperORM.ReturnList<PermissionModel>("PermissionViewAllByID", param).FirstOrDefault<PermissionModel>());
+            }
         }
 
     }

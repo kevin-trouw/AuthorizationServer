@@ -7,7 +7,7 @@
 <h2>Roles</h2>
 
 <p>
-    @Html.ActionLink("Add new role", "Create")
+    @Html.ActionLink("Add new role", "RoleAddOrEdit")
 </p>
 <table class="table">
     <tr>
@@ -34,9 +34,10 @@
             @Html.DisplayFor(modelItem => item.PermissionGroupName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit Role", "RoleAddOrEdit", new { id = item.RoleID })<br />
+            @Html.ActionLink("View Permissions", "ViewPermissionsByRole", new { id=item.RoleID })<br />
+            @Html.ActionLink("View Users", "ViewUsersByRole", new { id=item.RoleID })<br />
+            @Html.ActionLink("Delete Role", "Delete", new { id=item.RoleID })
         </td>
     </tr>
 }

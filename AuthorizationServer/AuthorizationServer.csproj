@@ -156,6 +156,10 @@
     <Content Include="Views\Authorization\ViewUser.cshtml" />
     <Content Include="Views\Authorization\PermissionGroupAddOrEdit.cshtml" />
     <Content Include="Views\Authorization\ViewPermissionsByRole.cshtml" />
+    <Content Include="Views\Authorization\PermissionAddOrEdit.cshtml" />
+    <Content Include="Views\Authorization\RoleAddOrEdit.cshtml" />
+    <Content Include="Views\Authorization\UserAddOrEdit.cshtml" />
+    <Content Include="Views\Authorization\ViewPermissionDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
