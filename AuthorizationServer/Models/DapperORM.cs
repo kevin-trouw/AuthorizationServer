@@ -8,7 +8,7 @@ namespace AuthorizationServer.Models
 {
     public static class DapperORM
     {
-        public static string connectionString = @"Data Source=DESKTOP-1Q8DKTG;Initial Catalog=AuthorizationServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string connectionString = @"Data Source=DESKTOP-8MOG1FL;Initial Catalog=AuthorizationServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public static void ExecuteWithoutReturn(string procedureName, DynamicParameters param = null)
         {
