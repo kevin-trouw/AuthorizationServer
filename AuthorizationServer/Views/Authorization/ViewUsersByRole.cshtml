@@ -39,7 +39,7 @@
             </td>
             <td>
                 @Html.ActionLink("User Details", "ViewUser", new { id=item.UserID }, new { id=item.RoleID })<br />
-                @Html.ActionLink("Delete User from Role", "Delete", new { id=item.UserID })
+                @Html.ActionLink("Delete User from Role", "DeleteUser", new { id=item.UserID })
             </td>
         </tr>
     }

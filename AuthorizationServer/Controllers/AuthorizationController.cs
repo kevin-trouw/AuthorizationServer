@@ -27,41 +27,6 @@ namespace AuthorizationServer.Controllers
             return View(DapperORM.ReturnList<CustomerModel>("CustomerViewDetails", param));
         }
 
-
-
-        // EDIT: User
-        [HttpGet]
-        public ActionResult UserAddOrEdit(int UserID = 0, int RoleID = 0)
-        {
-            if (UserID == 0)
-            {
-                return View();
-            }
-
-            else
-            {
-                DynamicParameters param = new DynamicParameters();
-                param.Add("@UserID", UserID);
-                param.Add("@RoleID", RoleID);
-
-                return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param).FirstOrDefault<UserModel>());
-            }
-        }
-
-        // ADD: User
-        [HttpPost]
-        public ActionResult UserAddOrEdit(UserModel userModel)
-        {
-            DynamicParameters param = new DynamicParameters();
-            param.Add("@UserID", userModel.UserID);
-            param.Add("@UserName", userModel.UserName);
-            param.Add("@RoleID", userModel.RoleID);
-
-            DapperORM.ExecuteWithoutReturn("CustomerAddOrEdit", param);
-
-            return RedirectToAction("Index");
-        }
-
         // DELETE: Customer
         [HttpGet]
         public ActionResult Delete(int id)
@@ -333,6 +298,53 @@ namespace AuthorizationServer.Controllers
 
                 return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param).FirstOrDefault<UserModel>());
             }
+        }
+
+        // EDIT: User
+        [HttpGet]
+        public ActionResult UserAddOrEdit(int id = 0)
+        {
+            if (id == 0)
+            {
+                return View();
+            }
+
+            else
+            {
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@UserID", id);
+
+                return View(DapperORM.ReturnList<UserModel>("UserViewAllByID", param).FirstOrDefault<UserModel>());
+            }
+        }
+
+        // ADD: User
+        [HttpPost]
+        public ActionResult UserAddOrEdit(UserModel userModel)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@UserID", userModel.UserID);
+            param.Add("@UserName", userModel.UserName);
+            param.Add("@RoleID", userModel.RoleID);
+
+
+            DapperORM.ExecuteWithoutReturn("UserAddOrEdit", param);
+
+            // ClientID (KlantID)
+            int RoleID = userModel.RoleID;
+
+            return Redirect("/Authorization/ViewUsersByRole/" + RoleID);
+        }
+
+        // DELETE USER
+        [HttpGet]
+        public ActionResult DeleteUser(int id)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@UserID", id);
+            DapperORM.ExecuteWithoutReturn("UserDeleteByID", param);
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // ---------- PERMISSIONS ----------
