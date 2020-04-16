@@ -1,10 +1,10 @@
-﻿@model IEnumerable<AuthorizationServer.Models.PermissionModel
+﻿@model IEnumerable<AuthorizationServer.Models.PermissionModel>
 
 @{
     ViewBag.Title = "Permissions By Role";
 }
 
-<h2>Permissions By Role</h2>
+    <h2>Permissions By Role</h2>
 
 <p>
     @Html.ActionLink("Add new permission", "PermissionAddOrEdit")
@@ -12,29 +12,26 @@
 <table class="table">
     <tr>
         <th>
-            
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PermissionName)
         </th>
+        
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="~/Content/images/permission-icon.png" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PermissionName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit Permission", "PermissionAddOrEdit", new { id=item.PermissionID })<br />
-                @Html.ActionLink("Permission Details", "ViewPermissionDetails", new { id=item.PermissionID })<br />
-                @Html.ActionLink("Delete Permission", "Delete", new { id=item.PermissionID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+<tr>
+    <td>
+        <img src="~/Content/images/permission-icon.png"
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PermissionName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit Permission", "PermissionAddOrEdit", new { id=item.PermissionID }) <br />
+        @Html.ActionLink("Permission Details", "ViewPermissionDetails", new { id=item.PermissionID }) <br />
+        @Html.ActionLink("Delete Permission", "DeletePermission", new { id=item.PermissionID })
+    </td>
+</tr>
+}
 
 </table>

@@ -70,7 +70,7 @@ namespace AuthorizationServer.Controllers
             param.Add("@CustomerID", id);
             DapperORM.ExecuteWithoutReturn("CustomerDeleteByID", param);
 
-            return (RedirectToAction("Index"));
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // ---------- ENVIRONMENT ----------
@@ -90,7 +90,7 @@ namespace AuthorizationServer.Controllers
             {
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@EnvironmentID", id);
-
+                
                 return View(DapperORM.ReturnList<EnvironmentModel>("EnvironmentViewAllByID", param).FirstOrDefault<EnvironmentModel>());
             }
         }
@@ -108,13 +108,14 @@ namespace AuthorizationServer.Controllers
             DapperORM.ExecuteWithoutReturn("EnvironmentAddOrEdit", param);
 
             // ClientID (KlantID)
+            int CustomerID = environmentModel.CustomerID;
 
-            return Redirect("/Authorization/CustomerViewEnvironment/1");
+            return Redirect("/Authorization/CustomerViewEnvironment/" + CustomerID);
         }
 
         // DELETE: Environment
         [HttpGet]
-        public ActionResult DeleteEnvironment(int id)
+        public ActionResult DeleteEnvironment(EnvironmentModel environmentModel, int id)
         {
             DynamicParameters param = new DynamicParameters();
             param.Add("@EnvironmentID", id);
@@ -165,8 +166,8 @@ namespace AuthorizationServer.Controllers
             DapperORM.ExecuteWithoutReturn("AppAddOrEdit", param);
 
             // ClientID (KlantID)
-
-            return Redirect("/Authorization/CustomerViewEnvironment/7");
+            int EnvironmentID = appModel.EnvironmentID;
+            return Redirect("/Authorization/EnvironmentViewApp/" + EnvironmentID);
         }
 
         // DELETE: App
@@ -220,10 +221,11 @@ namespace AuthorizationServer.Controllers
             
             DapperORM.ExecuteWithoutReturn("RoleAddOrEdit", param);
 
-            return RedirectToAction("Index");
+            int AppID = roleModel.AppID;
+            return Redirect("/Authorization/AppViewRole/" + AppID);
         }
 
-        // DELETE: App
+        // DELETE: Role
         [HttpGet]
         public ActionResult DeleteRole(int id)
         {
@@ -245,7 +247,7 @@ namespace AuthorizationServer.Controllers
             return View(DapperORM.ReturnList<AppModel>("AppViewPermissionGroups", param));
         }
 
-        // EDIT: Role
+        // EDIT: PermissionGroup
         [HttpGet]
         public ActionResult PermissionGroupAddOrEdit(int id = 0)
         {
@@ -263,7 +265,7 @@ namespace AuthorizationServer.Controllers
             }
         }
 
-        // ADD: Role
+        // ADD: PermissionGroup
         [HttpPost]
         public ActionResult PermissionGroupAddOrEdit(PermissionGroupModel permissionGroupModel)
         {
@@ -275,10 +277,11 @@ namespace AuthorizationServer.Controllers
 
             // ClientID (KlantID)
 
-            return Redirect("/Authorization/CustomerViewEnvironment/1");
+            int AppID = permissionGroupModel.AppID;
+            return Redirect("/Authorization/AppViewPermissionGroup/" + AppID);
         }
 
-        // DELETE: App
+        // DELETE: PermissionGroup
         [HttpGet]
         public ActionResult DeletePermissionGroup(int id)
         {
@@ -362,6 +365,7 @@ namespace AuthorizationServer.Controllers
 
         // ADD: Permission
         [HttpPost]
+
         public ActionResult PermissionAddOrEdit(PermissionModel permissionModel)
         {
             DynamicParameters param = new DynamicParameters();
@@ -370,7 +374,8 @@ namespace AuthorizationServer.Controllers
             
             DapperORM.ExecuteWithoutReturn("PermissionAddOrEdit", param);
 
-            return RedirectToAction("Index");
+            int RoleID = permissionModel.RoleID;
+            return Redirect("/Authorization/ViewPermissionsByRole/" + RoleID);
         }
 
         // Get details
@@ -390,6 +395,17 @@ namespace AuthorizationServer.Controllers
                 return View(DapperORM.ReturnList<PermissionModel>("PermissionViewAllByID", param).FirstOrDefault<PermissionModel>());
             }
         }
+
+        [HttpGet]
+        public ActionResult DeletePermission(int id)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@PermissionID", id);
+            DapperORM.ExecuteWithoutReturn("PermissionDeleteByID", param);
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
 
     }
 }

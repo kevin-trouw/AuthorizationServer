@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AuthorizationServer.Models
 {
@@ -73,6 +74,7 @@ namespace AuthorizationServer.Models
     {
         public int PermissionID { get; set; }
         public string PermissionName { get; set; }
+        public IEnumerable<SelectListItem> Permissions { get; set; }
         public int RoleID { get; set; }
         public string Description { get; set; }
     }

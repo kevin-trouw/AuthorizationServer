@@ -31,13 +31,10 @@
             <td>
                 @Html.ActionLink("Edit Environment", "EnvironmentAddOrEdit", new { id = item.EnvironmentID })<br />
                 @Html.ActionLink("Apps", "EnvironmentViewApp", new { id = item.EnvironmentID })<br />
-                @Html.ActionLink("Delete Environment", "Delete", new { id = item.EnvironmentID })
+                @Html.ActionLink("Delete Environment", "DeleteEnvironment", new { id = item.EnvironmentID })
             </td>
         </tr>
     }
 
 </table>
 
-<div>
-    @Html.ActionLink("Go Back", null, null, null, new { href = Request.UrlReferrer })
-</div>

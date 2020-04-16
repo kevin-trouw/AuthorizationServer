@@ -34,7 +34,7 @@
             @Html.ActionLink("Edit App", "AppAddOrEdit", new { id = item.AppID })<br />
             @Html.ActionLink("View Roles", "AppViewRole", new { id = item.AppID })<br />
             @Html.ActionLink("View PermissionGroups", "AppViewPermissionGroup", new { id = item.AppID })<br />
-            @Html.ActionLink("Delete", "Delete", new { id = item.AppID })
+            @Html.ActionLink("Delete", "DeleteApp", new { id = item.AppID })
         </td>
     </tr>
 }

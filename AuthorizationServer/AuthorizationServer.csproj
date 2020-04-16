@@ -118,6 +118,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -155,11 +162,11 @@
     <Content Include="Views\Authorization\ViewUsersByRole.cshtml" />
     <Content Include="Views\Authorization\ViewUser.cshtml" />
     <Content Include="Views\Authorization\PermissionGroupAddOrEdit.cshtml" />
-    <Content Include="Views\Authorization\ViewPermissionsByRole.cshtml" />
     <Content Include="Views\Authorization\PermissionAddOrEdit.cshtml" />
     <Content Include="Views\Authorization\RoleAddOrEdit.cshtml" />
     <Content Include="Views\Authorization\UserAddOrEdit.cshtml" />
     <Content Include="Views\Authorization\ViewPermissionDetails.cshtml" />
+    <Content Include="Views\Authorization\ViewPermissionsByRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
